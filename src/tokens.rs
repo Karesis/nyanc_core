@@ -27,6 +27,13 @@ pub enum TokenType {
     Minus,
     Star,
     Slash,
+    // 比较操作符 
+    Greater,          // >
+    GreaterEqual,     // >=
+    Less,             // <
+    LessEqual,        // <=
+    BangEqual,        // !=
+    EqualEqual,       // ==
 
     // --- 字面量 ---
     Identifier,
