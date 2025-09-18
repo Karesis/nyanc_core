@@ -22,3 +22,8 @@ impl Span {
         }
     }
 }
+
+/// 代表一个被驻留的字符串的唯一ID。
+/// 它轻量、可复制，并且可以用于高效的比较。
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+pub struct Symbol(pub u32);
