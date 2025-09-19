@@ -1,5 +1,12 @@
-use crate::Span;
+use crate::{Span, Symbol};
 use crate::tokens::TokenType;
+
+#[derive(Debug, Clone)]
+pub enum CompilerError {
+    Lexer(LexerError),
+    Parser(ParserError),
+    Semantic(SemanticError),
+}
 
 #[derive(Debug, Clone)]
 pub struct LexerError {
@@ -55,10 +62,22 @@ impl ParserError {
     }
 }
 
+// --- 新增：语义错误的定义 ---
 
 #[derive(Debug, Clone)]
-pub enum CompilerError {
-    Lexer(LexerError),
-    Parser(ParserError),
+pub enum SemanticErrorKind {
+    UnknownType(Symbol),
+}
+
+#[derive(Debug, Clone)]
+pub struct SemanticError {
+    pub kind: SemanticErrorKind,
+    pub span: Span,
+}
+
+impl SemanticError {
+    pub fn new(kind: SemanticErrorKind, span: Span) -> Self {
+        Self { kind, span }
+    }
 }
 
